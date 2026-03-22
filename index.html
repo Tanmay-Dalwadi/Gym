@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TD FITNESS | Transform Your Body & Mind</title>
+    <title>TD FITNESS | Transform Your Body & Mind in Anand</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -188,7 +188,6 @@
             border-color: var(--primary);
             background: var(--primary);
             color: var(--white);
-            box-shadow: 0 10px 20px rgba(255, 0, 60, 0.2);
         }
 
         /* --- Section Defaults --- */
@@ -223,11 +222,49 @@
             transition: var(--transition);
         }
 
-        .program-card:hover { transform: translateY(-10px); }
+        .program-card:hover { transform: translateY(-10px); background: #1a1a1a; }
         .program-card:hover::after { height: 5px; }
 
         .program-card h3 { font-size: 1.8rem; margin: 20px 0; position: relative; z-index: 1;}
         .program-card p { color: var(--text-gray); font-size: 0.95rem; position: relative; z-index: 1;}
+
+        /* --- BMI Calculator --- */
+        .bmi-section {
+            background: var(--dark-soft);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .bmi-card {
+            background: var(--dark);
+            padding: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--gray);
+        }
+
+        .input-group-flex {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-group-flex input { flex: 2; padding: 15px; background: var(--dark-soft); border: 1px solid var(--gray); color: white; border-radius: 4px; }
+        .input-group-flex select { flex: 1; min-width: 80px; padding: 10px; background: var(--gray); border: 1px solid var(--gray); color: white; border-radius: 4px; cursor: pointer; }
+
+        .bmi-result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--gray);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        .bmi-result-box.active { display: block; animation: zoomIn 0.5s ease forwards; }
+        .bmi-status-text { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; font-size: 0.9rem; }
 
         /* --- Gallery Section --- */
         .gallery-grid {
@@ -251,6 +288,19 @@
             transition: var(--transition);
         }
 
+        .gallery-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 5;
+        }
+
         .gallery-item:hover img { transform: scale(1.1); filter: brightness(0.6); }
 
         /* --- Testimonials --- */
@@ -265,18 +315,19 @@
             padding: 40px;
             border-radius: 8px;
             position: relative;
+            transition: var(--transition);
         }
 
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .testimonial-card p { font-style: italic; color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
         .testimonial-card .author { display: flex; align-items: center; gap: 15px; }
         .author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
         .author h5 { font-family: 'Inter'; font-weight: 700; color: var(--primary); }
-        .author span { font-size: 0.8rem; color: var(--text-gray); }
 
         /* --- Lead Form Section --- */
         .join-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 80px;
             background: #0f0f0f;
             align-items: center;
@@ -287,11 +338,12 @@
             padding: 50px;
             border-radius: 8px;
             border: 1px solid var(--gray);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; color: var(--text-gray); font-weight: 700;}
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 15px;
             background: var(--dark);
@@ -299,9 +351,10 @@
             color: var(--white);
             font-family: 'Inter';
             border-radius: 4px;
+            transition: 0.3s;
         }
 
-        .form-group input:focus { border-color: var(--primary); outline: none; }
+        .form-group input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 10px rgba(255, 0, 60, 0.2); }
 
         .btn-submit {
             width: 100%;
@@ -317,15 +370,6 @@
         }
 
         .btn-submit:hover { background: var(--white); color: var(--dark); }
-
-        /* --- Map --- */
-        .map-container {
-            width: 100%;
-            height: 400px;
-            margin-top: 50px;
-            border: 2px solid var(--gray);
-            filter: grayscale(1) invert(1) contrast(1.2);
-        }
 
         /* --- Floating WhatsApp --- */
         .whatsapp-float {
@@ -347,13 +391,6 @@
         }
 
         .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); filter: brightness(1.1); }
-
-        /* --- Pricing --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .price-card { background: var(--dark-soft); padding: 50px 40px; border: 1px solid var(--gray); transition: var(--transition); position: relative; }
-        .price-card.featured { border: 1.5px solid var(--primary); background: #1a0a0d; }
-        .price-card .price { font-size: 3.5rem; font-family: 'Oswald'; margin: 15px 0; }
-        .price-card .price span { font-size: 1rem; color: var(--text-gray); }
 
         /* --- Legal Modal --- */
         .modal {
@@ -387,11 +424,17 @@
             font-size: 1.5rem;
             color: var(--primary);
             cursor: pointer;
-            transition: var(--transition);
         }
 
-        .modal-content h3 { color: var(--primary); margin-bottom: 20px; font-size: 2rem; }
-        .modal-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; }
+        /* --- Contact & Map --- */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 50px;
+            border: 2px solid var(--gray);
+            filter: grayscale(1) invert(1) contrast(1.2);
+            border-radius: 8px;
+        }
 
         /* --- Footer --- */
         footer { background: #050505; padding: 100px 8% 40px; border-top: 1px solid var(--gray); }
@@ -400,17 +443,25 @@
         .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
 
         /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        .slide-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
+        .slide-left.active { opacity: 1; transform: translateX(0); }
+        .slide-right { opacity: 0; transform: translateX(50px); transition: all 0.8s ease-out; }
+        .slide-right.active { opacity: 1; transform: translateX(0); }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
             .navbar { padding: 20px 5%; }
             .nav-links { display: none; }
             .hamburger { display: block; }
-            .join-section { grid-template-columns: 1fr; gap: 40px; }
             .hero-content h1 { font-size: 4rem; }
-            .section-header h2 { font-size: 2.5rem; }
+            .bmi-section, .join-section { grid-template-columns: 1fr; gap: 40px; }
             .modal-content { padding: 30px; }
         }
     </style>
@@ -421,14 +472,12 @@
     <div id="legalModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeLegal()">&times;</span>
-            <div id="modalBody">
-                <!-- Content injected via JS -->
-            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919999999999?text=Hi%20TD%20Fitness,%20I'm%20interested%20in%20joining%20the%20Anand%20branch!" target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/919664807187" target="_blank" class="whatsapp-float">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.171c1.533.91 3.103 1.391 4.746 1.391 5.403 0 9.8-4.398 9.804-9.804.001-2.618-1.02-5.079-2.872-6.932-1.851-1.852-4.311-2.871-6.93-2.872-5.403 0-9.803 4.398-9.806 9.804-.001 1.688.459 3.32 1.328 4.737l-.991 3.619 3.721-.975zm11.081-7.558c-.3-.15-1.771-.874-2.046-.974-.276-.1-.476-.15-.676.15-.2.3-.775.974-.95 1.174-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.893-.797-1.495-1.782-1.67-2.083-.175-.3-.019-.462.131-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.629-.926-2.229-.244-.588-.491-.508-.676-.517-.174-.008-.375-.01-.576-.01s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.116 3.23 5.125 4.531.716.31 1.275.495 1.711.635.719.228 1.373.196 1.89.119.577-.085 1.771-.724 2.021-1.424.25-.7.25-1.299.175-1.424-.075-.125-.275-.2-.575-.35z"/></svg>
     </a>
 
@@ -438,9 +487,9 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#programs">Training</a></li>
-            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#pricing">Membership</a></li>
-            <li><a href="#join" class="btn-nav">Start Today</a></li>
+            <li><a href="#join" class="btn-nav">Join Now</a></li>
         </ul>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
@@ -449,7 +498,7 @@
     <div id="mobile-menu" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
         <a href="#home" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">HOME</a>
         <a href="#programs" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">TRAINING</a>
-        <a href="#testimonials" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">STORIES</a>
+        <a href="#gallery" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">GALLERY</a>
         <a href="#pricing" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">PRICING</a>
         <a href="#join" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">JOIN NOW</a>
         <div onclick="toggleMenu()" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; cursor: pointer;">✕</div>
@@ -458,11 +507,11 @@
     <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="reveal">TRANSFORM YOUR<br><span>LEGACY</span></h1>
-            <p class="reveal">Built for the dedicated in Anand. We focus on longevity, strength, and community over vanity metrics. Transform your body in 90 days with our elite mentorship.</p>
+            <h1 class="reveal">BUILD YOUR <span>LEGACY.</span></h1>
+            <p class="reveal">Transform your body in 90 days with Anand's most elite coaching facility. We focus on longevity, strength, and real results.</p>
             <div class="reveal" style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="#join" class="btn-cta">Start Your Journey</a>
-                <a href="#programs" class="btn-cta btn-secondary">View Programs</a>
+                <a href="#join" class="btn-cta">Start Free Trial</a>
+                <a href="#programs" class="btn-cta btn-secondary">Our Programs</a>
             </div>
         </div>
     </section>
@@ -470,189 +519,179 @@
     <!-- Programs -->
     <section id="programs">
         <div class="section-header reveal">
-            <span>Our Expertise</span>
-            <h2>Master Your Potential</h2>
+            <span>Specialization</span>
+            <h2>Master Your Body</h2>
         </div>
         <div class="programs-grid">
             <div class="program-card reveal">
-                <h3>01 / Strength</h3>
-                <p>Master the fundamental compound lifts. We focus on progressive overload and bulletproof form to build lasting raw power.</p>
+                <h3>01 / Power</h3>
+                <p>Master compound lifts with progressive overload and bulletproof form for raw power.</p>
             </div>
             <div class="program-card reveal">
-                <h3>02 / Conditioning</h3>
-                <p>High-octane metabolic training designed to melt fat while building athletic endurance that lasts outside the gym walls.</p>
+                <h3>02 / Cardio</h3>
+                <p>High-octane conditioning to torch calories and build endurance for real-world performance.</p>
             </div>
             <div class="program-card reveal">
-                <h3>03 / Transformation</h3>
-                <p>Specific 12-week cycles including nutrition mapping and weekly check-ins for guaranteed physique results.</p>
+                <h3>03 / Growth</h3>
+                <p>Hypertrophy focused plans backed by nutrition mapping for guaranteed muscle development.</p>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- BMI Calculator -->
+    <section class="bmi-section">
+        <div class="slide-left">
+            <div class="section-header">
+                <span>Check Status</span>
+                <h2>BMI Calculator</h2>
+            </div>
+            <p style="color: var(--text-gray);">Knowing your Body Mass Index is the first step toward a targeted fitness plan. Use our interactive tool below with your preferred units.</p>
+        </div>
+        <div class="bmi-card slide-right">
+            <div class="form-group">
+                <label>Weight</label>
+                <div class="input-group-flex">
+                    <input type="number" id="bmi-weight" placeholder="Value">
+                    <select id="weight-unit">
+                        <option value="kg">KG</option>
+                        <option value="lbs">LBS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Height</label>
+                <div class="input-group-flex">
+                    <input type="number" id="bmi-height" placeholder="Value">
+                    <select id="height-unit">
+                        <option value="cm">CM</option>
+                        <option value="inch">INCH</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="calculateBMI()" class="btn-submit">Calculate Now</button>
+            <div id="bmi-result" class="bmi-result-box">
+                <h4 style="color: var(--white);">Your BMI: <span id="bmi-value" style="color: var(--primary);">0</span></h4>
+                <p id="bmi-status" class="bmi-status-text"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformations Gallery -->
     <section id="gallery" style="background: var(--dark-soft);">
         <div class="section-header reveal">
-            <span>The Facility</span>
-            <h2>Where Legends Are Born</h2>
+            <span>Social Proof</span>
+            <h2>Transformations</h2>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item reveal" style="grid-column: span 2;">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" alt="Weights">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" alt="Lifting">
+                <div class="gallery-label">Elite Strength</div>
             </div>
             <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1571731956622-39cb4958640c?auto=format&fit=crop&w=600&q=80" alt="Treadmill">
+                <img src="https://images.unsplash.com/photo-1571731956622-39cb4958640c?auto=format&fit=crop&w=600&q=80" alt="Cardio">
+                <div class="gallery-label">Metabolic Blast</div>
             </div>
             <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=600&q=80" alt="Barbell">
+                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=600&q=80" alt="Yoga">
+                <div class="gallery-label">Flexibility</div>
             </div>
             <div class="gallery-item reveal" style="grid-column: span 2;">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Gym Interior">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Modern Gym">
+                <div class="gallery-label">Modern Facility</div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials -->
     <section id="testimonials">
         <div class="section-header reveal">
-            <span>Success Stories</span>
-            <h2>The TD Tribe Results</h2>
+            <span>Results</span>
+            <h2>Client Success</h2>
         </div>
         <div class="testimonial-grid">
             <div class="testimonial-card reveal">
-                <p>"Lost 12kg in just 4 months. The personal training at TD Fitness is on another level. They don't just give a plan; they change your mindset."</p>
+                <p>"Lost 12kg in 2 months with TD's guidance. Best trainers in the city, hands down. The vibe is unmatched!"</p>
                 <div class="author">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="User">
                     <div>
-                        <h5>Hardik Patel</h5>
-                        <span>Lost 12kg • Anand Resident</span>
+                        <h5>Karan Patel</h5>
+                        <span>Lost 12kg • Anand</span>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card reveal">
-                <p>"Best gym experience in Gujarat. The community is so supportive, and the equipment is always top-notch. I've never felt stronger."</p>
+                <p>"The 24/7 access and high-end equipment made it impossible for me to skip workouts. I've never felt stronger."</p>
                 <div class="author">
                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="User">
                     <div>
-                        <h5>Neha Shah</h5>
-                        <span>Powerlifter</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card reveal">
-                <p>"The 24/7 access is a game changer for my work schedule. Clean, professional, and full of high-energy people. Highly recommend!"</p>
-                <div class="author">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="User">
-                    <div>
-                        <h5>Arjun V.</h5>
-                        <span>Member for 2 Years</span>
+                        <h5>Riya Shah</h5>
+                        <span>Athlete • Member since 2022</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Join Now / Lead Form Section -->
+    <!-- Lead Form Section -->
     <section id="join" class="join-section">
-        <div class="join-content reveal">
+        <div class="slide-left">
             <div class="section-header">
-                <span>Start Today</span>
-                <h2>Claim Your<br>Free Trial</h2>
+                <span>Join The Tribe</span>
+                <h2>Claim Your<br>Free Trial Pass</h2>
             </div>
-            <p style="color: var(--text-gray); margin-bottom: 30px;">Fill out the form to book a free 3-day guest pass and a body composition analysis with one of our head coaches at the Anand branch.</p>
+            <p style="color: var(--text-gray); margin-bottom: 30px;">Book a free 3-day guest pass and body analysis with our head coaches today. No credit card required.</p>
             <ul style="list-style: none; color: var(--primary); font-weight: 700;">
-                <li style="margin-bottom: 10px;">⚡ Free Expert Consultation</li>
-                <li style="margin-bottom: 10px;">⚡ Full Facility Access</li>
-                <li style="margin-bottom: 10px;">⚡ Personalized Goal Setting</li>
+                <li style="margin-bottom: 10px;">🔥 Free Expert Consultation</li>
+                <li style="margin-bottom: 10px;">🔥 Full Facility Access</li>
+                <li style="margin-bottom: 10px;">🔥 Personal Goal Roadmap</li>
             </ul>
         </div>
-        <div class="form-container reveal">
+        <div class="form-container slide-right">
             <form id="leadForm">
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" placeholder="Enter mobile number" required>
+                    <label>Mobile Number</label>
+                    <input type="tel" placeholder="+91 XXXX XXX XXX" required>
                 </div>
                 <div class="form-group">
-                    <label>Fitness Goal</label>
+                    <label>Primary Goal</label>
                     <select required>
-                        <option value="">Select your goal</option>
+                        <option value="">Choose Goal</option>
                         <option value="weight-loss">Weight Loss</option>
                         <option value="muscle-gain">Muscle Gain</option>
                         <option value="general-fitness">General Fitness</option>
-                        <option value="athletic-performance">Athletic Performance</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-submit">Claim My Free Pass</button>
             </form>
             <div id="formSuccess" style="display:none; text-align:center; color: var(--whatsapp); font-weight:700; margin-top: 20px;">
-                Pass Claimed! We will call you within 24 hours.
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing">
-        <div class="section-header reveal">
-            <span>Memberships</span>
-            <h2>No Hidden Fees</h2>
-        </div>
-        <div class="pricing-grid">
-            <div class="price-card reveal">
-                <div class="plan">Monthly</div>
-                <div class="price">₹2,499<span>/mo</span></div>
-                <ul style="list-style: none;">
-                    <li>✓ Full Gym Access</li>
-                    <li>✓ General Coaching</li>
-                    <li>✓ All Cardio Equipment</li>
-                </ul>
-                <a href="#join" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 20px;">Get Started</a>
-            </div>
-            <div class="price-card featured reveal">
-                <div class="popular-tag">Best Value</div>
-                <div class="plan">Half Yearly</div>
-                <div class="price">₹11,999<span>/6 mo</span></div>
-                <ul style="list-style: none;">
-                    <li>✓ 24/7 Priority Access</li>
-                    <li>✓ 4 PT Sessions Included</li>
-                    <li>✓ Nutrition Roadmap</li>
-                    <li>✓ Steam & Sauna</li>
-                </ul>
-                <a href="#join" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 20px;">Go Pro</a>
-            </div>
-            <div class="price-card reveal">
-                <div class="plan">Annual</div>
-                <div class="price">₹19,999<span>/yr</span></div>
-                <ul style="list-style: none;">
-                    <li>✓ Best Pricing Tier</li>
-                    <li>✓ 2 Monthly Body Scans</li>
-                    <li>✓ Priority Locker</li>
-                    <li>✓ 2 Guest Passes/Mo</li>
-                </ul>
-                <a href="#join" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 20px;">Join Legacy</a>
+                Success! Our team will contact you shortly.
             </div>
         </div>
     </section>
 
     <!-- Contact & Map -->
     <section id="contact" style="background: var(--dark-soft);">
-        <div class="contact-flex">
-            <div class="contact-info reveal">
+        <div class="contact-flex" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div class="reveal">
                 <div class="section-header">
                     <span>Find Us</span>
-                    <h2>Anand Branch</h2>
+                    <h2>Anand Location</h2>
                 </div>
                 <p>📍 TD Fitness Towers, Near Town Hall, Anand, Gujarat 388001</p>
-                <p>📞 +91 99999 99999</p>
+                <p>📞 +91 96648 07187</p>
                 <p>📧 anand@tdfitness.fit</p>
-                <p style="margin-top: 20px; color: var(--primary);">Open Mon-Sat: 5:00 AM - 11:00 PM</p>
-                <p style="color: var(--primary);">Sunday: 7:00 AM - 1:00 PM</p>
+                <div style="margin-top: 30px;">
+                    <h5 style="color: var(--primary);">Open Hours:</h5>
+                    <p>Mon-Sat: 5 AM - 11 PM</p>
+                    <p>Sun: 7 AM - 1 PM</p>
+                </div>
             </div>
-            <div class="reveal" style="flex: 1; min-width: 300px;">
-                <!-- Real Google Map Embed for Anand, Gujarat -->
-                <iframe class="map-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58955.037341517815!2d72.906789126488!3d22.553195213264635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4e86532884a9%3A0xc3f6050b3882f068!2sAnand%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1709500000000!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div class="reveal">
+                <iframe class="map-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58955.037341517815!2d72.906789126488!3d22.553195213264635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4e86532884a9%3A0xc3f6050b3882f068!2sAnand%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1709500000000!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -662,31 +701,28 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="#" class="logo">TD<span>FITNESS</span></a>
-                <p style="margin-top: 20px;">The ultimate destination for elite performance training in Anand, Gujarat.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="#programs">Programs</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#join">Membership</a>
+                <p style="margin-top: 20px;">Elite performance training in Anand, Gujarat. Your transformation starts here.</p>
             </div>
             <div class="footer-col">
                 <h4>Support</h4>
                 <a onclick="showLegal('privacy')">Privacy Policy</a>
                 <a onclick="showLegal('terms')">Terms of Service</a>
                 <a onclick="showLegal('refund')">Refund Policy</a>
-                <a onclick="showLegal('help')">Help Center</a>
             </div>
             <div class="footer-col">
                 <h4>Newsletter</h4>
-                <p>Join our fitness community.</p>
-                <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--gray); color: white; margin-bottom: 10px;">
-                <button style="background: var(--primary); border: none; color: white; width: 100%; padding: 10px; cursor: pointer; font-weight: 700;">SUBSCRIBE</button>
+                <p id="news-sub-text">Get training tips via email.</p>
+                <form id="newsletterForm" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                    <input type="email" placeholder="Your Email" required style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--gray); color: white;">
+                    <button type="submit" style="background: var(--primary); border: none; color: white; width: 100%; padding: 10px; cursor: pointer; font-weight: 700;">SUBSCRIBE</button>
+                </form>
+                <div id="newsletterSuccess" style="display:none; color: var(--primary); font-weight: 700; margin-top: 15px;">
+                    Subscription Successful! Welcome to the tribe.
+                </div>
             </div>
         </div>
         <div class="footer-bottom" style="margin-top: 60px; text-align: center; border-top: 1px solid var(--gray); padding-top: 30px; font-size: 0.8rem; color: #444;">
-            &copy; 2024 TD Fitness Anand. Build Your Legacy.
+            &copy; 2024 TD Fitness Anand. Built for Champions.
         </div>
     </footer>
 
@@ -707,58 +743,100 @@
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
         }
 
+        // --- BMI Calculator Logic ---
+        function calculateBMI() {
+            let weightVal = parseFloat(document.getElementById('bmi-weight').value);
+            const weightUnit = document.getElementById('weight-unit').value;
+            let heightVal = parseFloat(document.getElementById('bmi-height').value);
+            const heightUnit = document.getElementById('height-unit').value;
+            const resultBox = document.getElementById('bmi-result');
+            
+            // Clear result if inputs are empty
+            if (isNaN(weightVal) || isNaN(heightVal) || weightVal <= 0 || heightVal <= 0) {
+                resultBox.classList.remove('active');
+                return;
+            }
+
+            // Standardize Weight to KG
+            // 1 lb = 0.45359237 kg
+            let weightInKg = weightVal;
+            if (weightUnit === 'lbs') {
+                weightInKg = weightVal * 0.45359237;
+            }
+
+            // Standardize Height to Meters
+            // 1 inch = 0.0254 m
+            let heightInMeters = heightVal;
+            if (heightUnit === 'cm') {
+                heightInMeters = heightVal / 100;
+            } else if (heightUnit === 'inch') {
+                heightInMeters = heightVal * 0.0254;
+            }
+
+            // BMI Calculation
+            const bmi = weightInKg / (heightInMeters * heightInMeters);
+            const bmiFixed = bmi.toFixed(1);
+            
+            document.getElementById('bmi-value').innerText = bmiFixed;
+            
+            let status = "";
+            let statusColor = "var(--primary)";
+            
+            if (bmi < 18.5) {
+                status = "Underweight - Time to bulk up!";
+                statusColor = "#3498db"; // Blue
+            } else if (bmi < 25) {
+                status = "Healthy Weight - Keep maintaining!";
+                statusColor = "#27ae60"; // Green
+            } else if (bmi < 30) {
+                status = "Overweight - Let's burn some fat!";
+                statusColor = "#f39c12"; // Orange
+            } else {
+                status = "Obese - Time for a serious transformation!";
+                statusColor = "#e74c3c"; // Red
+            }
+            
+            const statusEl = document.getElementById('bmi-status');
+            statusEl.innerText = status;
+            statusEl.style.color = statusColor;
+            
+            resultBox.classList.add('active');
+            resultBox.style.borderColor = statusColor;
+        }
+
         // --- Legal Modal Logic ---
         const legalData = {
-            privacy: {
-                title: "Privacy Policy",
-                content: "<p>At TD Fitness, we take your privacy seriously. We collect personal information such as your name, phone number, and fitness goals solely to provide personalized training and membership services.</p><p>We do not sell your data to third parties. Your payment information is processed through secure, encrypted gateways.</p>"
-            },
-            terms: {
-                title: "Terms of Service",
-                content: "<p>By joining TD Fitness, you agree to follow all gym rules and safety protocols. All memberships are non-transferable.</p><p>Personal training sessions must be booked 24 hours in advance. We reserve the right to cancel memberships of individuals violating safety or harassment policies.</p>"
-            },
-            refund: {
-                title: "Refund Policy",
-                content: "<p>Monthly memberships are non-refundable. For Half-Yearly or Annual plans, a partial refund may be issued within the first 7 days if you are unsatisfied with the facility.</p><p>Personal training packages are non-refundable once the first session has been completed.</p>"
-            },
-            help: {
-                title: "Help Center",
-                content: "<p>Need assistance? You can reach our help desk between 9:00 AM and 6:00 PM.</p><p><strong>Email:</strong> help@tdfitness.fit<br><strong>Phone:</strong> +91 99999 99999</p><p>Visit our front desk at the Anand branch for immediate membership queries.</p>"
-            }
+            privacy: { title: "Privacy Policy", content: "We respect your data. Your information is only used for internal membership management and fitness analysis." },
+            terms: { title: "Terms of Service", content: "By joining, you agree to follow gym safety rules and maintain proper etiquette toward staff and members." },
+            refund: { title: "Refund Policy", content: "Memberships are non-refundable but can be frozen for up to 30 days due to medical reasons." }
         };
 
         function showLegal(type) {
             const modal = document.getElementById('legalModal');
             const body = document.getElementById('modalBody');
             const data = legalData[type];
-            
-            body.innerHTML = `<h3>${data.title}</h3>${data.content}`;
+            body.innerHTML = `<h3>${data.title}</h3><p style="color: #ccc;">${data.content}</p>`;
             modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Stop background scroll
         }
 
-        function closeLegal() {
-            const modal = document.getElementById('legalModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scroll
-        }
+        function closeLegal() { document.getElementById('legalModal').style.display = 'none'; }
 
-        // Close modal if user clicks outside content
-        window.onclick = function(event) {
-            const modal = document.getElementById('legalModal');
-            if (event.target == modal) {
-                closeLegal();
-            }
-        }
-
-        // --- Form Handling ---
+        // --- Lead Form Handling ---
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             this.style.display = 'none';
             document.getElementById('formSuccess').style.display = 'block';
         });
 
-        // --- Scroll Animations ---
+        // --- Newsletter Handling ---
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('news-sub-text').style.display = 'none';
+            document.getElementById('newsletterSuccess').style.display = 'block';
+        });
+
+        // --- Intersection Observer for Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -767,12 +845,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Staggered delay for grid elements
-        document.querySelectorAll('.programs-grid > div, .testimonial-grid > div, .pricing-grid > div, .gallery-item').forEach((el, index) => {
-            el.style.transitionDelay = `${(index % 3) * 0.1}s`;
-        });
+        document.querySelectorAll('.reveal, .slide-left, .slide-right').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
