@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TD FITNESS | Premium Fitness & Performance</title>
+    <title>TD FITNESS | Transform Your Body & Mind</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -66,7 +66,7 @@
             background: rgba(10, 10, 10, 0.98);
             padding: 15px 8%;
             border-bottom: 1px solid rgba(255, 0, 60, 0.2);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
 
         .logo {
@@ -120,37 +120,38 @@
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(to right, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             padding: 0 8%;
+            position: relative;
         }
 
-        .hero-content { max-width: 800px; }
+        .hero-content { max-width: 800px; z-index: 10; }
 
         .hero-content h1 {
-            font-size: clamp(3.5rem, 8vw, 7rem);
-            margin-bottom: 15px;
-            line-height: 0.9;
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            margin-bottom: 20px;
+            line-height: 0.85;
         }
 
         .hero-content h1 span {
             display: block;
             color: var(--primary);
-            -webkit-text-stroke: 1px var(--primary);
+            -webkit-text-stroke: 1.5px var(--primary);
             -webkit-text-fill-color: transparent;
         }
 
         .hero-content p {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
+            font-size: 1.2rem;
+            margin-bottom: 45px;
             color: var(--text-gray);
-            max-width: 500px;
-            border-left: 3px solid var(--primary);
-            padding-left: 20px;
+            max-width: 550px;
+            border-left: 4px solid var(--primary);
+            padding-left: 25px;
         }
 
         .btn-cta {
@@ -174,44 +175,65 @@
             background: var(--white);
             color: var(--dark);
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 60, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(255, 0, 60, 0.2);
         }
 
         /* --- Section Defaults --- */
-        section { padding: 100px 8%; }
+        section { padding: 120px 8%; }
 
-        .section-header { margin-bottom: 60px; }
+        .section-header { margin-bottom: 70px; }
         .section-header span { color: var(--primary); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px;}
         .section-header h2 { font-size: 3.5rem; line-height: 1; }
 
-        /* --- Programs Section --- */
+        /* --- Programs --- */
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2px;
-            background: var(--gray);
-            border: 1px solid var(--gray);
+            gap: 20px;
         }
 
         .program-card {
-            background: var(--dark);
+            background: var(--dark-soft);
             padding: 60px 40px;
+            border: 1px solid var(--gray);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 0%;
+            background: var(--primary);
+            z-index: 0;
             transition: var(--transition);
         }
 
-        .program-card:hover {
-            background: var(--primary);
-            color: white;
-        }
+        .program-card:hover { transform: translateY(-10px); }
+        .program-card:hover::after { height: 5px; }
 
-        .program-card h3 { font-size: 1.8rem; margin: 20px 0; }
-        .program-card p { color: var(--text-gray); font-size: 0.95rem; transition: var(--transition); }
-        .program-card:hover p { color: white; }
+        .program-card h3 { font-size: 1.8rem; margin: 20px 0; position: relative; z-index: 1;}
+        .program-card p { color: var(--text-gray); font-size: 0.95rem; position: relative; z-index: 1;}
 
         /* --- Gallery Section --- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-auto-rows: 300px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-auto-rows: 350px;
             gap: 15px;
         }
 
@@ -219,7 +241,7 @@
             position: relative;
             overflow: hidden;
             background: var(--gray);
-            cursor: pointer;
+            border-radius: 4px;
         }
 
         .gallery-item img {
@@ -227,209 +249,188 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
-            filter: brightness(0.7);
         }
 
-        .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 0, 60, 0.8);
-            display: flex;
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(0.6); }
+
+        /* --- Testimonials --- */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--gray);
+            padding: 40px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial-card p { font-style: italic; color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
+        .testimonial-card .author { display: flex; align-items: center; gap: 15px; }
+        .author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .author h5 { font-family: 'Inter'; font-weight: 700; color: var(--primary); }
+        .author span { font-size: 0.8rem; color: var(--text-gray); }
+
+        /* --- Lead Form Section --- */
+        .join-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            background: #0f0f0f;
             align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
         }
 
-        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1); }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        .gallery-overlay span { color: white; font-weight: 700; font-size: 1.2rem; transform: translateY(20px); transition: var(--transition); }
-        .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
-
-        .gallery-item.wide { grid-column: span 2; }
-        @media (max-width: 600px) { .gallery-item.wide { grid-column: span 1; } }
-
-        /* --- Events Section --- */
-        .events-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .event-card {
+        .form-container {
             background: var(--dark-soft);
-            border-left: 4px solid var(--primary);
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            transition: var(--transition);
+            padding: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--gray);
         }
 
-        .event-card:hover { background: var(--gray); transform: translateX(10px); }
-
-        .event-date {
-            text-align: center;
-            min-width: 80px;
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; color: var(--text-gray); font-weight: 700;}
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            color: var(--white);
+            font-family: 'Inter';
+            border-radius: 4px;
         }
 
-        .event-date h3 { font-size: 2.5rem; color: var(--primary); line-height: 1; }
-        .event-date p { font-size: 0.8rem; text-transform: uppercase; font-weight: 700; }
+        .form-group input:focus { border-color: var(--primary); outline: none; }
 
-        .event-details { flex: 1; }
-        .event-details h4 { font-size: 1.5rem; margin-bottom: 5px; }
-        .event-details p { color: var(--text-gray); font-size: 0.9rem; }
-
-        .event-btn {
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 10px 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-family: 'Oswald';
+            font-size: 1.2rem;
             text-transform: uppercase;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .event-btn:hover { background: var(--primary); color: white; }
+        .btn-submit:hover { background: var(--white); color: var(--dark); }
 
-        @media (max-width: 768px) {
-            .event-card { flex-direction: column; text-align: center; }
-            .event-btn { width: 100%; }
-        }
-
-        /* --- Meet the Coaches --- */
-        .coach-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .coach-card {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 3/4;
-            background: var(--gray);
-        }
-
-        .coach-img {
+        /* --- Map --- */
+        .map-container {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: var(--transition);
+            height: 400px;
+            margin-top: 50px;
+            border: 2px solid var(--gray);
+            filter: grayscale(1) invert(1) contrast(1.2);
         }
 
-        .coach-card:hover .coach-img { filter: grayscale(0%); transform: scale(1.05); }
-
-        .coach-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 30px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-        }
-
-        .coach-info h4 { font-size: 1.5rem; color: var(--white); }
-        .coach-info p { color: var(--primary); font-size: 0.8rem; text-transform: uppercase; font-weight: 700;}
-
-        /* --- Pricing --- */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .price-card {
-            background: var(--dark-soft);
-            padding: 60px 40px;
-            border: 1px solid var(--gray);
-            position: relative;
-        }
-
-        .price-card.popular { border: 1px solid var(--primary); }
-        .popular-tag {
-            position: absolute;
-            top: 0; right: 40px;
-            background: var(--primary);
+        /* --- Floating WhatsApp --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
             color: white;
-            padding: 5px 15px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .price-card .price { font-size: 4rem; font-family: 'Oswald'; margin: 20px 0; }
-        .price-card .price span { font-size: 1.2rem; color: var(--text-gray); }
-
-        .features { list-style: none; margin-bottom: 40px; }
-        .features li { margin-bottom: 15px; color: var(--text-gray); display: flex; align-items: center; gap: 10px;}
-        .features li::before { content: '→'; color: var(--primary); font-weight: 900; }
-
-        /* --- Contact --- */
-        .contact-flex {
-            display: flex;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info { flex: 1; min-width: 300px; }
-        .contact-actions { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 20px; }
-
-        .contact-btn {
-            padding: 20px;
-            text-decoration: none;
-            color: white;
-            font-weight: 700;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); filter: brightness(1.1); }
+
+        /* --- Pricing --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .price-card { background: var(--dark-soft); padding: 50px 40px; border: 1px solid var(--gray); transition: var(--transition); position: relative; }
+        .price-card.featured { border: 1.5px solid var(--primary); background: #1a0a0d; }
+        .price-card .price { font-size: 3.5rem; font-family: 'Oswald'; margin: 15px 0; }
+        .price-card .price span { font-size: 1rem; color: var(--text-gray); }
+
+        /* --- Legal Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--dark-soft);
+            width: 100%;
+            max-width: 700px;
+            max-height: 80vh;
+            border: 1px solid var(--gray);
+            padding: 50px;
+            overflow-y: auto;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .btn-wa { background: var(--whatsapp); }
-        .btn-em { background: var(--email); }
-        .contact-btn:hover { filter: brightness(1.2); transform: translateX(10px); }
+        .modal-content h3 { color: var(--primary); margin-bottom: 20px; font-size: 2rem; }
+        .modal-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; }
 
         /* --- Footer --- */
-        footer {
-            background: #050505;
-            padding: 100px 8% 40px;
-            border-top: 1px solid var(--gray);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 60px;
-        }
-
-        .footer-col h4 { margin-bottom: 30px; font-size: 1.2rem; }
-        .footer-col p, .footer-col a { color: var(--text-gray); text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.9rem; transition: 0.3s;}
-        .footer-col a:hover { color: var(--primary); }
+        footer { background: #050505; padding: 100px 8% 40px; border-top: 1px solid var(--gray); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col a { color: var(--text-gray); text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; transition: var(--transition); cursor: pointer;}
+        .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
 
         /* --- Animations --- */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- Mobile --- */
+        /* --- Responsive --- */
         @media (max-width: 992px) {
             .navbar { padding: 20px 5%; }
             .nav-links { display: none; }
             .hamburger { display: block; }
-            .hero { text-align: center; justify-content: center; }
-            .hero-content p { margin: 0 auto 40px; border: none; padding: 0; }
+            .join-section { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content h1 { font-size: 4rem; }
             .section-header h2 { font-size: 2.5rem; }
+            .modal-content { padding: 30px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Legal Modal -->
+    <div id="legalModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeLegal()">&times;</span>
+            <div id="modalBody">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919999999999?text=Hi%20TD%20Fitness,%20I'm%20interested%20in%20joining%20the%20Anand%20branch!" target="_blank" class="whatsapp-float">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.171c1.533.91 3.103 1.391 4.746 1.391 5.403 0 9.8-4.398 9.804-9.804.001-2.618-1.02-5.079-2.872-6.932-1.851-1.852-4.311-2.871-6.93-2.872-5.403 0-9.803 4.398-9.806 9.804-.001 1.688.459 3.32 1.328 4.737l-.991 3.619 3.721-.975zm11.081-7.558c-.3-.15-1.771-.874-2.046-.974-.276-.1-.476-.15-.676.15-.2.3-.775.974-.95 1.174-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.893-.797-1.495-1.782-1.67-2.083-.175-.3-.019-.462.131-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.629-.926-2.229-.244-.588-.491-.508-.676-.517-.174-.008-.375-.01-.576-.01s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.116 3.23 5.125 4.531.716.31 1.275.495 1.711.635.719.228 1.373.196 1.89.119.577-.085 1.771-.724 2.021-1.424.25-.7.25-1.299.175-1.424-.075-.125-.275-.2-.575-.35z"/></svg>
+    </a>
 
     <!-- Header -->
     <nav class="navbar" id="navbar">
@@ -437,11 +438,9 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#programs">Training</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#coaches">Coaches</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact" class="btn-nav">Start Now</a></li>
+            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#pricing">Membership</a></li>
+            <li><a href="#join" class="btn-nav">Start Today</a></li>
         </ul>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
@@ -450,21 +449,21 @@
     <div id="mobile-menu" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
         <a href="#home" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">HOME</a>
         <a href="#programs" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">TRAINING</a>
-        <a href="#gallery" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">GALLERY</a>
-        <a href="#events" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">EVENTS</a>
+        <a href="#testimonials" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">STORIES</a>
         <a href="#pricing" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">PRICING</a>
+        <a href="#join" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">JOIN NOW</a>
         <div onclick="toggleMenu()" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; cursor: pointer;">✕</div>
     </div>
 
     <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="reveal">NOT JUST A GYM.<br>A <span>COMMUNITY.</span></h1>
-            <p class="reveal">Welcome to TD Fitness. We don't believe in "quick fixes." We believe in sweat, discipline, and the pursuit of your absolute best self.</p>
-            <a href="#programs" class="btn-cta reveal">
-                Explore Training
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <h1 class="reveal">TRANSFORM YOUR<br><span>LEGACY</span></h1>
+            <p class="reveal">Built for the dedicated in Anand. We focus on longevity, strength, and community over vanity metrics. Transform your body in 90 days with our elite mentorship.</p>
+            <div class="reveal" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <a href="#join" class="btn-cta">Start Your Journey</a>
+                <a href="#programs" class="btn-cta btn-secondary">View Programs</a>
+            </div>
         </div>
     </section>
 
@@ -472,20 +471,20 @@
     <section id="programs">
         <div class="section-header reveal">
             <span>Our Expertise</span>
-            <h2>What We Do Best</h2>
+            <h2>Master Your Potential</h2>
         </div>
         <div class="programs-grid">
             <div class="program-card reveal">
                 <h3>01 / Strength</h3>
-                <p>Focused on compound movements and progressive overload. We teach you how to lift safe and lift heavy.</p>
+                <p>Master the fundamental compound lifts. We focus on progressive overload and bulletproof form to build lasting raw power.</p>
             </div>
             <div class="program-card reveal">
                 <h3>02 / Conditioning</h3>
-                <p>Metabolic conditioning that pushes your heart rate and tests your mental fortitude. Real-world fitness.</p>
+                <p>High-octane metabolic training designed to melt fat while building athletic endurance that lasts outside the gym walls.</p>
             </div>
             <div class="program-card reveal">
-                <h3>03 / Movement</h3>
-                <p>Mobility and recovery work. Because being strong is useless if you can't move your own body.</p>
+                <h3>03 / Transformation</h3>
+                <p>Specific 12-week cycles including nutrition mapping and weekly check-ins for guaranteed physique results.</p>
             </div>
         </div>
     </section>
@@ -493,106 +492,103 @@
     <!-- Gallery Section -->
     <section id="gallery" style="background: var(--dark-soft);">
         <div class="section-header reveal">
-            <span>Visuals</span>
-            <h2>Photo Gallery</h2>
+            <span>The Facility</span>
+            <h2>Where Legends Are Born</h2>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item wide reveal">
-                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1000&q=80" alt="Gym">
-                <div class="gallery-overlay"><span>MAIN FLOOR</span></div>
+            <div class="gallery-item reveal" style="grid-column: span 2;">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" alt="Weights">
             </div>
             <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1574673139081-3f8823624b22?auto=format&fit=crop&w=600&q=80" alt="Training">
-                <div class="gallery-overlay"><span>INTENSITY</span></div>
+                <img src="https://images.unsplash.com/photo-1571731956622-39cb4958640c?auto=format&fit=crop&w=600&q=80" alt="Treadmill">
             </div>
             <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=600&q=80" alt="Lifting">
-                <div class="gallery-overlay"><span>POWER</span></div>
+                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=600&q=80" alt="Barbell">
             </div>
-            <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80" alt="Equipment">
-                <div class="gallery-overlay"><span>EQUIPMENT</span></div>
-            </div>
-            <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1518611012118-2969c6a2c7a7?auto=format&fit=crop&w=600&q=80" alt="Yoga">
-                <div class="gallery-overlay"><span>FLOW ZONE</span></div>
+            <div class="gallery-item reveal" style="grid-column: span 2;">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Gym Interior">
             </div>
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section id="events">
+    <!-- Testimonials Section -->
+    <section id="testimonials">
         <div class="section-header reveal">
-            <span>Don't Miss Out</span>
-            <h2>Upcoming Events</h2>
+            <span>Success Stories</span>
+            <h2>The TD Tribe Results</h2>
         </div>
-        <div class="events-container">
-            <!-- Event 1 -->
-            <div class="event-card reveal">
-                <div class="event-date">
-                    <h3>24</h3>
-                    <p>MARCH</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal">
+                <p>"Lost 12kg in just 4 months. The personal training at TD Fitness is on another level. They don't just give a plan; they change your mindset."</p>
+                <div class="author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="User">
+                    <div>
+                        <h5>Hardik Patel</h5>
+                        <span>Lost 12kg • Anand Resident</span>
+                    </div>
                 </div>
-                <div class="event-details">
-                    <h4>Powerlifting Open Meet</h4>
-                    <p>Test your 1RM in Squat, Bench, and Deadlift. Open to all members.</p>
-                </div>
-                <button class="event-btn">Register</button>
             </div>
-            <!-- Event 2 -->
-            <div class="event-card reveal">
-                <div class="event-date">
-                    <h3>02</h3>
-                    <p>APRIL</p>
+            <div class="testimonial-card reveal">
+                <p>"Best gym experience in Gujarat. The community is so supportive, and the equipment is always top-notch. I've never felt stronger."</p>
+                <div class="author">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="User">
+                    <div>
+                        <h5>Neha Shah</h5>
+                        <span>Powerlifter</span>
+                    </div>
                 </div>
-                <div class="event-details">
-                    <h4>Mobility & Recovery Workshop</h4>
-                    <p>Special guest session on foam rolling and dynamic stretching techniques.</p>
-                </div>
-                <button class="event-btn">Join Now</button>
             </div>
-            <!-- Event 3 -->
-            <div class="event-card reveal">
-                <div class="event-date">
-                    <h3>15</h3>
-                    <p>APRIL</p>
+            <div class="testimonial-card reveal">
+                <p>"The 24/7 access is a game changer for my work schedule. Clean, professional, and full of high-energy people. Highly recommend!"</p>
+                <div class="author">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="User">
+                    <div>
+                        <h5>Arjun V.</h5>
+                        <span>Member for 2 Years</span>
+                    </div>
                 </div>
-                <div class="event-details">
-                    <h4>Nightmare HIIT Challenge</h4>
-                    <p>60 minutes of pure intensity. Survival of the fittest!</p>
-                </div>
-                <button class="event-btn">Book Slot</button>
             </div>
         </div>
     </section>
 
-    <!-- Coaches Section -->
-    <section id="coaches" style="background: var(--dark-soft);">
-        <div class="section-header reveal">
-            <span>The Team</span>
-            <h2>Meet Your Coaches</h2>
+    <!-- Join Now / Lead Form Section -->
+    <section id="join" class="join-section">
+        <div class="join-content reveal">
+            <div class="section-header">
+                <span>Start Today</span>
+                <h2>Claim Your<br>Free Trial</h2>
+            </div>
+            <p style="color: var(--text-gray); margin-bottom: 30px;">Fill out the form to book a free 3-day guest pass and a body composition analysis with one of our head coaches at the Anand branch.</p>
+            <ul style="list-style: none; color: var(--primary); font-weight: 700;">
+                <li style="margin-bottom: 10px;">⚡ Free Expert Consultation</li>
+                <li style="margin-bottom: 10px;">⚡ Full Facility Access</li>
+                <li style="margin-bottom: 10px;">⚡ Personalized Goal Setting</li>
+            </ul>
         </div>
-        <div class="coach-grid">
-            <div class="coach-card reveal">
-                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=600&q=80" alt="Coach" class="coach-img">
-                <div class="coach-info">
-                    <h4>Vikram Singh</h4>
-                    <p>Head Strength Coach</p>
+        <div class="form-container reveal">
+            <form id="leadForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your name" required>
                 </div>
-            </div>
-            <div class="coach-card reveal">
-                <img src="https://images.unsplash.com/photo-1548690312-e3b507d17a4d?auto=format&fit=crop&w=600&q=80" alt="Coach" class="coach-img">
-                <div class="coach-info">
-                    <h4>Anjali Sharma</h4>
-                    <p>Mobility & Yoga Specialist</p>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter mobile number" required>
                 </div>
-            </div>
-            <div class="coach-card reveal">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Coach" class="coach-img">
-                <div class="coach-info">
-                    <h4>David T.</h4>
-                    <p>Founder / Performance Coach</p>
+                <div class="form-group">
+                    <label>Fitness Goal</label>
+                    <select required>
+                        <option value="">Select your goal</option>
+                        <option value="weight-loss">Weight Loss</option>
+                        <option value="muscle-gain">Muscle Gain</option>
+                        <option value="general-fitness">General Fitness</option>
+                        <option value="athletic-performance">Athletic Performance</option>
+                    </select>
                 </div>
+                <button type="submit" class="btn-submit">Claim My Free Pass</button>
+            </form>
+            <div id="formSuccess" style="display:none; text-align:center; color: var(--whatsapp); font-weight:700; margin-top: 20px;">
+                Pass Claimed! We will call you within 24 hours.
             </div>
         </div>
     </section>
@@ -601,68 +597,62 @@
     <section id="pricing">
         <div class="section-header reveal">
             <span>Memberships</span>
-            <h2>Choose Your Path</h2>
+            <h2>No Hidden Fees</h2>
         </div>
         <div class="pricing-grid">
             <div class="price-card reveal">
-                <div class="plan">Monthly Starter</div>
+                <div class="plan">Monthly</div>
                 <div class="price">₹2,499<span>/mo</span></div>
-                <ul class="features">
-                    <li>Full Gym Access</li>
-                    <li>General Coaching Support</li>
-                    <li>Standard Equipment Zone</li>
+                <ul style="list-style: none;">
+                    <li>✓ Full Gym Access</li>
+                    <li>✓ General Coaching</li>
+                    <li>✓ All Cardio Equipment</li>
                 </ul>
-                <a href="#contact" class="btn-cta" style="width: 100%; justify-content: center;">Start Today</a>
+                <a href="#join" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 20px;">Get Started</a>
             </div>
-            <div class="price-card popular reveal">
-                <div class="popular-tag">Most Recommended</div>
-                <div class="plan">The Athlete (6 Mo)</div>
+            <div class="price-card featured reveal">
+                <div class="popular-tag">Best Value</div>
+                <div class="plan">Half Yearly</div>
                 <div class="price">₹11,999<span>/6 mo</span></div>
-                <ul class="features">
-                    <li>24/7 Access Pass</li>
-                    <li>2 Nutrition Assessments</li>
-                    <li>All Group Classes Included</li>
-                    <li>Personalized Workout App</li>
+                <ul style="list-style: none;">
+                    <li>✓ 24/7 Priority Access</li>
+                    <li>✓ 4 PT Sessions Included</li>
+                    <li>✓ Nutrition Roadmap</li>
+                    <li>✓ Steam & Sauna</li>
                 </ul>
-                <a href="#contact" class="btn-cta" style="width: 100%; justify-content: center;">Go Pro</a>
+                <a href="#join" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 20px;">Go Pro</a>
             </div>
             <div class="price-card reveal">
-                <div class="plan">Legacy Annual</div>
+                <div class="plan">Annual</div>
                 <div class="price">₹19,999<span>/yr</span></div>
-                <ul class="features">
-                    <li>Full Annual Access</li>
-                    <li>1-on-1 Monthly Evaluation</li>
-                    <li>Free TD Fitness Apparel</li>
-                    <li>Priority Locker Access</li>
+                <ul style="list-style: none;">
+                    <li>✓ Best Pricing Tier</li>
+                    <li>✓ 2 Monthly Body Scans</li>
+                    <li>✓ Priority Locker</li>
+                    <li>✓ 2 Guest Passes/Mo</li>
                 </ul>
-                <a href="#contact" class="btn-cta" style="width: 100%; justify-content: center;">Join Legacy</a>
+                <a href="#join" class="btn-cta" style="width: 100%; justify-content: center; margin-top: 20px;">Join Legacy</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact & Map -->
     <section id="contact" style="background: var(--dark-soft);">
         <div class="contact-flex">
             <div class="contact-info reveal">
                 <div class="section-header">
-                    <span>Reach Out</span>
-                    <h2>Have Questions?<br>Let's Talk.</h2>
+                    <span>Find Us</span>
+                    <h2>Anand Branch</h2>
                 </div>
-                <p style="color: var(--text-gray); margin-bottom: 30px;">We're located in the heart of Gurgaon. Stop by for a tour, or drop us a message anytime.</p>
-                <p>📍 TD Fitness Towers, Sector 44, Gurgaon</p>
+                <p>📍 TD Fitness Towers, Near Town Hall, Anand, Gujarat 388001</p>
                 <p>📞 +91 99999 99999</p>
-                <p>📧 info@tdfitness.in</p>
+                <p>📧 anand@tdfitness.fit</p>
+                <p style="margin-top: 20px; color: var(--primary);">Open Mon-Sat: 5:00 AM - 11:00 PM</p>
+                <p style="color: var(--primary);">Sunday: 7:00 AM - 1:00 PM</p>
             </div>
-            <div class="contact-actions reveal">
-                <a href="https://wa.me/919999999999?text=Hi%20TD%20Fitness,%20I'm%20ready%20to%20start!" class="contact-btn btn-wa">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.171c1.533.91 3.103 1.391 4.746 1.391 5.403 0 9.8-4.398 9.804-9.804.001-2.618-1.02-5.079-2.872-6.932-1.851-1.852-4.311-2.871-6.93-2.872-5.403 0-9.803 4.398-9.806 9.804-.001 1.688.459 3.32 1.328 4.737l-.991 3.619 3.721-.975zm11.081-7.558c-.3-.15-1.771-.874-2.046-.974-.276-.1-.476-.15-.676.15-.2.3-.775.974-.95 1.174-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.893-.797-1.495-1.782-1.67-2.083-.175-.3-.019-.462.131-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.629-.926-2.229-.244-.588-.491-.508-.676-.517-.174-.008-.375-.01-.576-.01s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.116 3.23 5.125 4.531.716.31 1.275.495 1.711.635.719.228 1.373.196 1.89.119.577-.085 1.771-.724 2.021-1.424.25-.7.25-1.299.175-1.424-.075-.125-.275-.2-.575-.35z"/></svg>
-                    WhatsApp Us Directly
-                </a>
-                <a href="mailto:info@tdfitness.in" class="contact-btn btn-em">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    Email Our Founders
-                </a>
-                <p style="text-align: center; font-size: 0.8rem; opacity: 0.5;">Expect a response within 2 hours.</p>
+            <div class="reveal" style="flex: 1; min-width: 300px;">
+                <!-- Real Google Map Embed for Anand, Gujarat -->
+                <iframe class="map-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58955.037341517815!2d72.906789126488!3d22.553195213264635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4e86532884a9%3A0xc3f6050b3882f068!2sAnand%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1709500000000!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -672,23 +662,31 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="#" class="logo">TD<span>FITNESS</span></a>
-                <p style="margin-top: 20px;">Built for the dedicated. We focus on longevity, strength, and community over vanity metrics.</p>
+                <p style="margin-top: 20px;">The ultimate destination for elite performance training in Anand, Gujarat.</p>
             </div>
             <div class="footer-col">
-                <h4>Hours</h4>
-                <p>Mon - Fri: 5 AM - 10 PM</p>
-                <p>Sat - Sun: 7 AM - 8 PM</p>
-                <p style="color: var(--primary);">Open 24/7 for Pro Members</p>
+                <h4>Quick Links</h4>
+                <a href="#programs">Programs</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#join">Membership</a>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <a onclick="showLegal('privacy')">Privacy Policy</a>
+                <a onclick="showLegal('terms')">Terms of Service</a>
+                <a onclick="showLegal('refund')">Refund Policy</a>
+                <a onclick="showLegal('help')">Help Center</a>
             </div>
             <div class="footer-col">
                 <h4>Newsletter</h4>
-                <p>Get training tips directly.</p>
+                <p>Join our fitness community.</p>
                 <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--gray); color: white; margin-bottom: 10px;">
                 <button style="background: var(--primary); border: none; color: white; width: 100%; padding: 10px; cursor: pointer; font-weight: 700;">SUBSCRIBE</button>
             </div>
         </div>
         <div class="footer-bottom" style="margin-top: 60px; text-align: center; border-top: 1px solid var(--gray); padding-top: 30px; font-size: 0.8rem; color: #444;">
-            &copy; 2024 TD Fitness India. All rights reserved.
+            &copy; 2024 TD Fitness Anand. Build Your Legacy.
         </div>
     </footer>
 
@@ -696,20 +694,71 @@
         // --- Navbar Scroll Effect ---
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 80) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
         });
 
-        // --- Mobile Menu Toggle ---
+        // --- Mobile Menu ---
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        // --- Intersection Observer for Animations ---
+        // --- Legal Modal Logic ---
+        const legalData = {
+            privacy: {
+                title: "Privacy Policy",
+                content: "<p>At TD Fitness, we take your privacy seriously. We collect personal information such as your name, phone number, and fitness goals solely to provide personalized training and membership services.</p><p>We do not sell your data to third parties. Your payment information is processed through secure, encrypted gateways.</p>"
+            },
+            terms: {
+                title: "Terms of Service",
+                content: "<p>By joining TD Fitness, you agree to follow all gym rules and safety protocols. All memberships are non-transferable.</p><p>Personal training sessions must be booked 24 hours in advance. We reserve the right to cancel memberships of individuals violating safety or harassment policies.</p>"
+            },
+            refund: {
+                title: "Refund Policy",
+                content: "<p>Monthly memberships are non-refundable. For Half-Yearly or Annual plans, a partial refund may be issued within the first 7 days if you are unsatisfied with the facility.</p><p>Personal training packages are non-refundable once the first session has been completed.</p>"
+            },
+            help: {
+                title: "Help Center",
+                content: "<p>Need assistance? You can reach our help desk between 9:00 AM and 6:00 PM.</p><p><strong>Email:</strong> help@tdfitness.fit<br><strong>Phone:</strong> +91 99999 99999</p><p>Visit our front desk at the Anand branch for immediate membership queries.</p>"
+            }
+        };
+
+        function showLegal(type) {
+            const modal = document.getElementById('legalModal');
+            const body = document.getElementById('modalBody');
+            const data = legalData[type];
+            
+            body.innerHTML = `<h3>${data.title}</h3>${data.content}`;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Stop background scroll
+        }
+
+        function closeLegal() {
+            const modal = document.getElementById('legalModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scroll
+        }
+
+        // Close modal if user clicks outside content
+        window.onclick = function(event) {
+            const modal = document.getElementById('legalModal');
+            if (event.target == modal) {
+                closeLegal();
+            }
+        }
+
+        // --- Form Handling ---
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        });
+
+        // --- Scroll Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -720,9 +769,9 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Smooth staggered effect for grids
-        document.querySelectorAll('.programs-grid > div, .coach-grid > div, .pricing-grid > div, .gallery-item, .event-card').forEach((el, index) => {
-            el.style.transitionDelay = `${(index % 4) * 0.15}s`;
+        // Staggered delay for grid elements
+        document.querySelectorAll('.programs-grid > div, .testimonial-grid > div, .pricing-grid > div, .gallery-item').forEach((el, index) => {
+            el.style.transitionDelay = `${(index % 3) * 0.1}s`;
         });
     </script>
 </body>
