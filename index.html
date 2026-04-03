@@ -1,851 +1,355 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TD FITNESS | Transform Your Body & Mind in Anand</title>
+    <title>StyleHub | Premium Men's Salon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* --- CSS Reset & Variables --- */
         :root {
-            --primary: #ff003c; 
-            --primary-dark: #cc0030;
-            --whatsapp: #25d366;
-            --email: #007bff;
-            --dark: #0a0a0a;
-            --dark-soft: #141414;
-            --gray: #1e1e1e;
-            --text-gray: #a0a0a0;
-            --light: #f4f4f4;
-            --white: #ffffff;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --gold: #eab308; /* yellow-500 */
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--dark); }
-        ::-webkit-scrollbar-thumb { background: var(--gray); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: #050505;
+            color: #e2e8f0;
         }
-
-        h1, h2, h3, h4, .logo {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+        .font-luxury {
+            font-family: 'Cinzel', serif;
         }
-
-        /* --- Navigation --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 8%;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            padding: 15px 8%;
-            border-bottom: 1px solid rgba(255, 0, 60, 0.2);
-            backdrop-filter: blur(15px);
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--white);
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .logo span { color: var(--primary); }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            opacity: 0.7;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-            opacity: 1;
-        }
-
-        .btn-nav {
-            background: var(--primary);
-            padding: 10px 22px;
-            border-radius: 2px;
-            color: white !important;
-            font-weight: 700 !important;
-            opacity: 1 !important;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(to right, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            padding: 0 8%;
-            position: relative;
-        }
-
-        .hero-content { max-width: 800px; z-index: 10; }
-
-        .hero-content h1 {
-            font-size: clamp(3.5rem, 8vw, 6.5rem);
-            margin-bottom: 20px;
-            line-height: 0.85;
-        }
-
-        .hero-content h1 span {
-            display: block;
-            color: var(--primary);
-            -webkit-text-stroke: 1.5px var(--primary);
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 45px;
-            color: var(--text-gray);
-            max-width: 550px;
-            border-left: 4px solid var(--primary);
-            padding-left: 25px;
-        }
-
-        .btn-cta {
-            padding: 18px 40px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-cta:hover {
-            background: var(--white);
-            color: var(--dark);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 0, 60, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        /* --- Section Defaults --- */
-        section { padding: 120px 8%; }
-
-        .section-header { margin-bottom: 70px; }
-        .section-header span { color: var(--primary); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px;}
-        .section-header h2 { font-size: 3.5rem; line-height: 1; }
-
-        /* --- Programs --- */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .program-card {
-            background: var(--dark-soft);
-            padding: 60px 40px;
-            border: 1px solid var(--gray);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .program-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 0%;
-            background: var(--primary);
-            z-index: 0;
-            transition: var(--transition);
-        }
-
-        .program-card:hover { transform: translateY(-10px); background: #1a1a1a; }
-        .program-card:hover::after { height: 5px; }
-
-        .program-card h3 { font-size: 1.8rem; margin: 20px 0; position: relative; z-index: 1;}
-        .program-card p { color: var(--text-gray); font-size: 0.95rem; position: relative; z-index: 1;}
-
-        /* --- BMI Calculator --- */
-        .bmi-section {
-            background: var(--dark-soft);
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .bmi-card {
-            background: var(--dark);
-            padding: 50px;
-            border-radius: 8px;
-            border: 1px solid var(--gray);
-        }
-
-        .input-group-flex {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .input-group-flex input { flex: 2; padding: 15px; background: var(--dark-soft); border: 1px solid var(--gray); color: white; border-radius: 4px; }
-        .input-group-flex select { flex: 1; min-width: 80px; padding: 10px; background: var(--gray); border: 1px solid var(--gray); color: white; border-radius: 4px; cursor: pointer; }
-
-        .bmi-result-box {
-            margin-top: 30px;
-            padding: 25px;
-            background: var(--gray);
-            border-radius: 8px;
-            text-align: center;
-            display: none;
-            border-left: 4px solid var(--primary);
-        }
-
-        .bmi-result-box.active { display: block; animation: zoomIn 0.5s ease forwards; }
-        .bmi-status-text { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; font-size: 0.9rem; }
-
-        /* --- Gallery Section --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            grid-auto-rows: 350px;
-            gap: 15px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            background: var(--gray);
-            border-radius: 4px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 15px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            z-index: 5;
-        }
-
-        .gallery-item:hover img { transform: scale(1.1); filter: brightness(0.6); }
-
-        /* --- Testimonials --- */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: var(--gray);
-            padding: 40px;
-            border-radius: 8px;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .testimonial-card p { font-style: italic; color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
-        .testimonial-card .author { display: flex; align-items: center; gap: 15px; }
-        .author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-        .author h5 { font-family: 'Inter'; font-weight: 700; color: var(--primary); }
-
-        /* --- Lead Form Section --- */
-        .join-section {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            background: #0f0f0f;
-            align-items: center;
-        }
-
-        .form-container {
-            background: var(--dark-soft);
-            padding: 50px;
-            border-radius: 8px;
-            border: 1px solid var(--gray);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; color: var(--text-gray); font-weight: 700;}
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 15px;
-            background: var(--dark);
-            border: 1px solid var(--gray);
-            color: var(--white);
-            font-family: 'Inter';
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        .form-group input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 10px rgba(255, 0, 60, 0.2); }
-
-        .btn-submit {
-            width: 100%;
-            padding: 18px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            font-family: 'Oswald';
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-submit:hover { background: var(--white); color: var(--dark); }
-
-        /* --- Floating WhatsApp --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            z-index: 2000;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); filter: brightness(1.1); }
-
-        /* --- Legal Modal --- */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 3000;
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .modal-content {
-            background: var(--dark-soft);
-            width: 100%;
-            max-width: 700px;
-            max-height: 80vh;
-            border: 1px solid var(--gray);
-            padding: 50px;
-            overflow-y: auto;
-            position: relative;
-            border-radius: 8px;
+        .hero-glow {
+            background: radial-gradient(circle at center, rgba(234, 179, 8, 0.1) 0%, transparent 70%);
         }
-
-        .modal-close {
-            position: absolute;
-            top: 20px; right: 20px;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
+        .pricing-line {
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+            flex-grow: 1;
+            margin: 0 10px;
+            margin-bottom: 5px;
         }
-
-        /* --- Contact & Map --- */
-        .map-container {
-            width: 100%;
-            height: 400px;
-            margin-top: 50px;
-            border: 2px solid var(--gray);
-            filter: grayscale(1) invert(1) contrast(1.2);
-            border-radius: 8px;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px -10px rgba(234, 179, 8, 0.2);
         }
-
-        /* --- Footer --- */
-        footer { background: #050505; padding: 100px 8% 40px; border-top: 1px solid var(--gray); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-col a { color: var(--text-gray); text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; transition: var(--transition); cursor: pointer;}
-        .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
-
-        /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .slide-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
-        .slide-left.active { opacity: 1; transform: translateX(0); }
-        .slide-right { opacity: 0; transform: translateX(50px); transition: all 0.8s ease-out; }
-        .slide-right.active { opacity: 1; transform: translateX(0); }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 992px) {
-            .navbar { padding: 20px 5%; }
-            .nav-links { display: none; }
-            .hamburger { display: block; }
-            .hero-content h1 { font-size: 4rem; }
-            .bmi-section, .join-section { grid-template-columns: 1fr; gap: 40px; }
-            .modal-content { padding: 30px; }
+        /* Mobile adjustment for horizontal scrolling on gallery */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Legal Modal -->
-    <div id="legalModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeLegal()">&times;</span>
-            <div id="modalBody"></div>
+    <!-- NAV BAR -->
+    <nav class="fixed top-0 w-full z-[100] border-b border-white/5 bg-black/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center transition-transform group-hover:rotate-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="M7 12h.01"/><path d="M17 12h.01"/><path d="M12 7v.01"/><path d="M12 17v.01"/></svg>
+                </div>
+                <span class="text-xl font-luxury font-bold tracking-tighter text-white">STYLEHUB</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-semibold text-slate-400">
+                <a href="#services" class="hover:text-yellow-500 transition-colors">Services</a>
+                <a href="#pricing" class="hover:text-yellow-500 transition-colors">Pricing</a>
+                <a href="#gallery" class="hover:text-yellow-500 transition-colors">Gallery</a>
+                <a href="#contact" class="bg-yellow-500 text-black px-5 py-2 rounded shadow-lg shadow-yellow-500/20 hover:scale-105 transition-all">Book Now</a>
+            </div>
+
+            <!-- Mobile Menu Icon (Visual only) -->
+            <div class="md:hidden text-yellow-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </div>
         </div>
-    </div>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919664807187" target="_blank" class="whatsapp-float">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.171c1.533.91 3.103 1.391 4.746 1.391 5.403 0 9.8-4.398 9.804-9.804.001-2.618-1.02-5.079-2.872-6.932-1.851-1.852-4.311-2.871-6.93-2.872-5.403 0-9.803 4.398-9.806 9.804-.001 1.688.459 3.32 1.328 4.737l-.991 3.619 3.721-.975zm11.081-7.558c-.3-.15-1.771-.874-2.046-.974-.276-.1-.476-.15-.676.15-.2.3-.775.974-.95 1.174-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.893-.797-1.495-1.782-1.67-2.083-.175-.3-.019-.462.131-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.629-.926-2.229-.244-.588-.491-.508-.676-.517-.174-.008-.375-.01-.576-.01s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.116 3.23 5.125 4.531.716.31 1.275.495 1.711.635.719.228 1.373.196 1.89.119.577-.085 1.771-.724 2.021-1.424.25-.7.25-1.299.175-1.424-.075-.125-.275-.2-.575-.35z"/></svg>
-    </a>
-
-    <!-- Header -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="logo">TD<span>FITNESS</span></a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#programs">Training</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#pricing">Membership</a></li>
-            <li><a href="#join" class="btn-nav">Join Now</a></li>
-        </ul>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
-        <a href="#home" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">HOME</a>
-        <a href="#programs" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">TRAINING</a>
-        <a href="#gallery" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">GALLERY</a>
-        <a href="#pricing" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">PRICING</a>
-        <a href="#join" onclick="toggleMenu()" style="color: white; text-decoration: none; font-size: 2rem; font-family: Oswald;">JOIN NOW</a>
-        <div onclick="toggleMenu()" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; cursor: pointer;">✕</div>
-    </div>
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+        <div class="absolute inset-0 hero-glow"></div>
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-yellow-500/10 blur-[120px] rounded-full"></div>
+        
+        <div class="relative z-10 max-w-4xl text-center">
+            <h2 class="text-xs uppercase tracking-[0.5em] text-yellow-500 font-bold mb-6 animate-pulse">Luxury Men's Grooming</h2>
+            <h1 class="text-5xl md:text-8xl font-luxury text-white mb-8 leading-tight">
+                Crafting Your <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-200">Signature Look</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Experience the art of barbering where traditional techniques meet contemporary style. Based in India, serving with excellence.
+            </p>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="reveal">BUILD YOUR <span>LEGACY.</span></h1>
-            <p class="reveal">Transform your body in 90 days with Anand's most elite coaching facility. We focus on longevity, strength, and real results.</p>
-            <div class="reveal" style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="#join" class="btn-cta">Start Free Trial</a>
-                <a href="#programs" class="btn-cta btn-secondary">Our Programs</a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" class="w-full sm:w-auto px-10 py-4 bg-yellow-500 text-black font-bold rounded-full transition-all hover:shadow-[0_0_30px_rgba(234,179,8,0.4)] hover:-translate-y-1">
+                    Secure Your Slot
+                </a>
+                <a href="https://wa.me/919106312477" target="_blank" class="w-full sm:w-auto px-10 py-4 glass border-white/10 text-white font-bold rounded-full transition-all hover:bg-white/5">
+                    WhatsApp Chat
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Programs -->
-    <section id="programs">
-        <div class="section-header reveal">
-            <span>Specialization</span>
-            <h2>Master Your Body</h2>
+    <!-- SERVICES (BENTO STYLE) -->
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-16 text-center md:text-left">
+            <h3 class="text-yellow-500 font-bold text-sm tracking-[0.3em] uppercase mb-2">Our Expertise</h3>
+            <h2 class="text-4xl font-luxury text-white">Premier Services</h2>
         </div>
-        <div class="programs-grid">
-            <div class="program-card reveal">
-                <h3>01 / Power</h3>
-                <p>Master compound lifts with progressive overload and bulletproof form for raw power.</p>
-            </div>
-            <div class="program-card reveal">
-                <h3>02 / Cardio</h3>
-                <p>High-octane conditioning to torch calories and build endurance for real-world performance.</p>
-            </div>
-            <div class="program-card reveal">
-                <h3>03 / Growth</h3>
-                <p>Hypertrophy focused plans backed by nutrition mapping for guaranteed muscle development.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- BMI Calculator -->
-    <section class="bmi-section">
-        <div class="slide-left">
-            <div class="section-header">
-                <span>Check Status</span>
-                <h2>BMI Calculator</h2>
-            </div>
-            <p style="color: var(--text-gray);">Knowing your Body Mass Index is the first step toward a targeted fitness plan. Use our interactive tool below with your preferred units.</p>
-        </div>
-        <div class="bmi-card slide-right">
-            <div class="form-group">
-                <label>Weight</label>
-                <div class="input-group-flex">
-                    <input type="number" id="bmi-weight" placeholder="Value">
-                    <select id="weight-unit">
-                        <option value="kg">KG</option>
-                        <option value="lbs">LBS</option>
-                    </select>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 glass p-8 rounded-3xl card-hover transition-all flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-yellow-500/10 text-yellow-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758L6.242 12m0 0L9.121 9.121M3 3h3.586a1 1 0 01.707.293L12 8.586l5.707-5.707a1 1 0 011.414 0L21 4.586a1 1 0 010 1.414L15.414 11.586l5.293 5.293a1 1 0 010 1.414L19.293 19.707a1 1 0 01-1.414 0L12 14.414l-5.707 5.707a1 1 0 01-1.414 0L3.414 18.707a1 1 0 010-1.414L8.707 12 3 6.293A1 1 0 013 4.879L4.414 3.464a1 1 0 011.415 0L12 9.586" /></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">The Master Haircut</h4>
+                    <p class="text-slate-400">Not just a cut, but a transformation. Our stylists analyze your face shape and hair growth to deliver a custom look that lasts.</p>
+                </div>
+                <div class="mt-8 flex gap-2">
+                    <span class="text-xs bg-white/5 border border-white/10 px-3 py-1 rounded-full">Scissor Cut</span>
+                    <span class="text-xs bg-white/5 border border-white/10 px-3 py-1 rounded-full">Fade Expert</span>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Height</label>
-                <div class="input-group-flex">
-                    <input type="number" id="bmi-height" placeholder="Value">
-                    <select id="height-unit">
-                        <option value="cm">CM</option>
-                        <option value="inch">INCH</option>
-                    </select>
+
+            <div class="glass p-8 rounded-3xl card-hover transition-all">
+                <div class="w-12 h-12 bg-yellow-500/10 text-yellow-500 rounded-xl flex items-center justify-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-4">Beard Sculpting</h4>
+                <p class="text-slate-400 mb-6">Precision trimming and hot towel treatment for a sharp, clean beard line.</p>
+                <ul class="text-sm text-yellow-500/70 space-y-2">
+                    <li>+ Beard Oil Application</li>
+                    <li>+ Hot Towel Finish</li>
+                </ul>
+            </div>
+
+            <div class="glass p-8 rounded-3xl card-hover transition-all">
+                <div class="w-12 h-12 bg-yellow-500/10 text-yellow-500 rounded-xl flex items-center justify-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-4">Relaxing Head Massage</h4>
+                <p class="text-slate-400">Rejuvenate your senses with our signature oil massage. Perfect for stress relief.</p>
+            </div>
+
+            <div class="md:col-span-2 glass p-8 rounded-3xl card-hover transition-all flex flex-col md:flex-row gap-8 items-center">
+                <div class="flex-1">
+                    <h4 class="text-2xl font-bold text-white mb-4">Skin Revitalization</h4>
+                    <p class="text-slate-400">From charcoal scrubs to gold facials, we ensure your skin glows as much as your hair. Deep pore cleansing and anti-tan treatments available.</p>
+                </div>
+                <div class="w-full md:w-48 aspect-video md:aspect-square bg-yellow-500/20 rounded-2xl flex items-center justify-center text-yellow-500 font-bold">
+                    PREMIUM CARE
                 </div>
             </div>
-            <button onclick="calculateBMI()" class="btn-submit">Calculate Now</button>
-            <div id="bmi-result" class="bmi-result-box">
-                <h4 style="color: var(--white);">Your BMI: <span id="bmi-value" style="color: var(--primary);">0</span></h4>
-                <p id="bmi-status" class="bmi-status-text"></p>
-            </div>
         </div>
     </section>
 
-    <!-- Transformations Gallery -->
-    <section id="gallery" style="background: var(--dark-soft);">
-        <div class="section-header reveal">
-            <span>Social Proof</span>
-            <h2>Transformations</h2>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item reveal" style="grid-column: span 2;">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" alt="Lifting">
-                <div class="gallery-label">Elite Strength</div>
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="py-24 bg-black/50 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-yellow-500 font-bold text-sm tracking-[0.3em] uppercase mb-2">Investment</h3>
+                <h2 class="text-4xl font-luxury text-white">Pricing Menu</h2>
             </div>
-            <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1571731956622-39cb4958640c?auto=format&fit=crop&w=600&q=80" alt="Cardio">
-                <div class="gallery-label">Metabolic Blast</div>
-            </div>
-            <div class="gallery-item reveal">
-                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=600&q=80" alt="Yoga">
-                <div class="gallery-label">Flexibility</div>
-            </div>
-            <div class="gallery-item reveal" style="grid-column: span 2;">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Modern Gym">
-                <div class="gallery-label">Modern Facility</div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials">
-        <div class="section-header reveal">
-            <span>Results</span>
-            <h2>Client Success</h2>
-        </div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card reveal">
-                <p>"Lost 12kg in 2 months with TD's guidance. Best trainers in the city, hands down. The vibe is unmatched!"</p>
-                <div class="author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="User">
-                    <div>
-                        <h5>Karan Patel</h5>
-                        <span>Lost 12kg • Anand</span>
+            <div class="space-y-8">
+                <!-- Service Group -->
+                <div class="glass p-8 md:p-12 rounded-[2rem]">
+                    <div class="grid md:grid-cols-2 gap-x-16 gap-y-8">
+                        <!-- Column 1 -->
+                        <div class="space-y-6">
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Hair Cut</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹150</span>
+                            </div>
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Hair Wash</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹50</span>
+                            </div>
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Beard Styling</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹80</span>
+                            </div>
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Clean Shave</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹100</span>
+                            </div>
+                        </div>
+                        <!-- Column 2 -->
+                        <div class="space-y-6">
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Head Massage</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹100</span>
+                            </div>
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Face Scrub</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹150</span>
+                            </div>
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">D-Tan Facial</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹400</span>
+                            </div>
+                            <div class="flex items-end">
+                                <span class="text-white font-semibold">Hair Color</span>
+                                <div class="pricing-line"></div>
+                                <span class="text-yellow-500 font-bold">₹300+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo Card -->
+                    <div class="mt-12 p-6 bg-yellow-500 text-black rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div class="text-center md:text-left">
+                            <h4 class="font-bold text-lg">Signature Combo Deal</h4>
+                            <p class="text-sm font-medium opacity-80 italic">Haircut + Hair Wash + Beard Styling</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-3xl font-black italic">₹250</span>
+                            <a href="https://wa.me/919106312477" class="bg-black text-white px-6 py-2 rounded-lg font-bold text-xs uppercase hover:scale-105 transition-transform">Book Deal</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card reveal">
-                <p>"The 24/7 access and high-end equipment made it impossible for me to skip workouts. I've never felt stronger."</p>
-                <div class="author">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="User">
-                    <div>
-                        <h5>Riya Shah</h5>
-                        <span>Athlete • Member since 2022</span>
-                    </div>
-                </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+                <h3 class="text-yellow-500 font-bold text-sm tracking-[0.3em] uppercase mb-2">Our Studio</h3>
+                <h2 class="text-4xl font-luxury text-white">Visual Experience</h2>
+            </div>
+            <p class="text-slate-500 text-sm max-w-sm">A clean, hygienic, and premium environment designed specifically for the modern man.</p>
+        </div>
+
+        <div class="flex gap-6 overflow-x-auto hide-scrollbar pb-10 snap-x">
+            <div class="min-w-[280px] md:min-w-[400px] aspect-[4/5] bg-slate-900 rounded-[2rem] overflow-hidden snap-center group">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" alt="Interior">
+            </div>
+            <div class="min-w-[280px] md:min-w-[400px] aspect-[4/5] bg-slate-900 rounded-[2rem] overflow-hidden snap-center group">
+                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" alt="Tools">
+            </div>
+            <div class="min-w-[280px] md:min-w-[400px] aspect-[4/5] bg-slate-900 rounded-[2rem] overflow-hidden snap-center group">
+                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" alt="Style">
+            </div>
+            <div class="min-w-[280px] md:min-w-[400px] aspect-[4/5] bg-slate-900 rounded-[2rem] overflow-hidden snap-center group">
+                <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" alt="Experience">
             </div>
         </div>
     </section>
 
-    <!-- Lead Form Section -->
-    <section id="join" class="join-section">
-        <div class="slide-left">
-            <div class="section-header">
-                <span>Join The Tribe</span>
-                <h2>Claim Your<br>Free Trial Pass</h2>
+    <!-- CONTACT FORM -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-2xl mx-auto glass p-8 md:p-12 rounded-[2.5rem] border-white/10 shadow-2xl">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-luxury text-white mb-4">Ready for a Change?</h2>
+                <p class="text-slate-400">Fill your details and our team will contact you for a confirmation.</p>
             </div>
-            <p style="color: var(--text-gray); margin-bottom: 30px;">Book a free 3-day guest pass and body analysis with our head coaches today. No credit card required.</p>
-            <ul style="list-style: none; color: var(--primary); font-weight: 700;">
-                <li style="margin-bottom: 10px;">🔥 Free Expert Consultation</li>
-                <li style="margin-bottom: 10px;">🔥 Full Facility Access</li>
-                <li style="margin-bottom: 10px;">🔥 Personal Goal Roadmap</li>
-            </ul>
-        </div>
-        <div class="form-container slide-right">
-            <form id="leadForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Enter your name" required>
+
+            <form onsubmit="handleSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" required placeholder="Your Name" class="w-full bg-black/50 border border-white/10 p-4 rounded-xl focus:border-yellow-500 focus:outline-none text-white transition-colors">
+                    <input type="tel" required placeholder="Phone Number" class="w-full bg-black/50 border border-white/10 p-4 rounded-xl focus:border-yellow-500 focus:outline-none text-white transition-colors">
                 </div>
-                <div class="form-group">
-                    <label>Mobile Number</label>
-                    <input type="tel" placeholder="+91 XXXX XXX XXX" required>
-                </div>
-                <div class="form-group">
-                    <label>Primary Goal</label>
-                    <select required>
-                        <option value="">Choose Goal</option>
-                        <option value="weight-loss">Weight Loss</option>
-                        <option value="muscle-gain">Muscle Gain</option>
-                        <option value="general-fitness">General Fitness</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-submit">Claim My Free Pass</button>
+                <select class="w-full bg-black/50 border border-white/10 p-4 rounded-xl focus:border-yellow-500 focus:outline-none text-slate-400 appearance-none">
+                    <option>Select Primary Service</option>
+                    <option>Haircut (₹150)</option>
+                    <option>Beard Styling (₹80)</option>
+                    <option>Combo Deal (₹250)</option>
+                    <option>Luxury Facial (₹500)</option>
+                </select>
+                <button type="submit" class="w-full bg-yellow-500 text-black py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_40px_rgba(234,179,8,0.3)] transition-all">
+                    Send Booking Request
+                </button>
             </form>
-            <div id="formSuccess" style="display:none; text-align:center; color: var(--whatsapp); font-weight:700; margin-top: 20px;">
-                Success! Our team will contact you shortly.
+
+            <div id="success" class="hidden text-center py-10">
+                <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Request Successful!</h3>
+                <p class="text-slate-500">Tanmay and the team will get back to you shortly.</p>
+                <button onclick="location.reload()" class="mt-6 text-yellow-500 font-bold uppercase text-xs tracking-widest underline">Book Another</button>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Map -->
-    <section id="contact" style="background: var(--dark-soft);">
-        <div class="contact-flex" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-            <div class="reveal">
-                <div class="section-header">
-                    <span>Find Us</span>
-                    <h2>Anand Location</h2>
-                </div>
-                <p>📍 TD Fitness Towers, Near Town Hall, Anand, Gujarat 388001</p>
-                <p>📞 +91 96648 07187</p>
-                <p>📧 anand@tdfitness.fit</p>
-                <div style="margin-top: 30px;">
-                    <h5 style="color: var(--primary);">Open Hours:</h5>
-                    <p>Mon-Sat: 5 AM - 11 PM</p>
-                    <p>Sun: 7 AM - 1 PM</p>
-                </div>
+    <!-- FOOTER -->
+    <footer class="bg-black py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="text-center md:text-left">
+                <h1 class="text-3xl font-luxury font-bold text-white mb-4">STYLE<span class="text-yellow-500">HUB</span></h1>
+                <p class="text-slate-500 text-sm max-w-xs mx-auto md:mx-0">Luxury grooming for the Indian gentleman. Redefining standards since 2024.</p>
             </div>
-            <div class="reveal">
-                <iframe class="map-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58955.037341517815!2d72.906789126488!3d22.553195213264635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4e86532884a9%3A0xc3f6050b3882f068!2sAnand%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1709500000000!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <a href="#" class="logo">TD<span>FITNESS</span></a>
-                <p style="margin-top: 20px;">Elite performance training in Anand, Gujarat. Your transformation starts here.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <a onclick="showLegal('privacy')">Privacy Policy</a>
-                <a onclick="showLegal('terms')">Terms of Service</a>
-                <a onclick="showLegal('refund')">Refund Policy</a>
-            </div>
-            <div class="footer-col">
-                <h4>Newsletter</h4>
-                <p id="news-sub-text">Get training tips via email.</p>
-                <form id="newsletterForm" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                    <input type="email" placeholder="Your Email" required style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--gray); color: white;">
-                    <button type="submit" style="background: var(--primary); border: none; color: white; width: 100%; padding: 10px; cursor: pointer; font-weight: 700;">SUBSCRIBE</button>
-                </form>
-                <div id="newsletterSuccess" style="display:none; color: var(--primary); font-weight: 700; margin-top: 15px;">
-                    Subscription Successful! Welcome to the tribe.
+            <div class="flex flex-col items-center">
+                <h6 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-500 mb-6">Connect with us</h6>
+                <div class="flex gap-8">
+                    <a href="https://instagram.com/tanmay_dalwadi" target="_blank" class="group flex flex-col items-center gap-2">
+                        <div class="w-12 h-12 glass rounded-full flex items-center justify-center transition-all group-hover:bg-yellow-500 group-hover:text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold text-slate-400 group-hover:text-yellow-500">Instagram</span>
+                    </a>
+                    <a href="https://wa.me/919106312477" target="_blank" class="group flex flex-col items-center gap-2">
+                        <div class="w-12 h-12 glass rounded-full flex items-center justify-center transition-all group-hover:bg-green-500 group-hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412 0 6.556-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.197 1.441 4.934 1.442 5.333 0 9.673-4.34 9.673-9.673s-4.338-9.673-9.671-9.673c-5.333 0-9.673 4.34-9.673 9.673 0 2.1.671 4.108 1.942 5.84l-.997 3.646 3.73-.979zm9.423-6.117c-.366-.183-2.17-1.071-2.505-1.193-.335-.122-.579-.183-.823.183-.244.366-.945 1.193-1.159 1.438-.214.244-.427.274-.792.091-.366-.183-1.543-.568-2.939-1.814-1.086-.968-1.82-2.164-2.033-2.531-.214-.366-.023-.564.159-.745.163-.163.366-.427.549-.641.183-.214.244-.366.366-.61.122-.244.061-.457-.03-.641-.091-.183-.823-1.983-1.128-2.716-.297-.714-.598-.617-.823-.629-.214-.012-.457-.012-.701-.012s-.641.091-.976.457c-.335.366-1.281 1.251-1.281 3.05s1.312 3.538 1.495 3.782c.183.244 2.581 3.941 6.252 5.525.873.376 1.554.601 2.083.771.878.278 1.677.239 2.308.145.703-.105 2.17-.885 2.475-1.739.305-.854.305-1.586.214-1.739-.091-.153-.335-.244-.701-.427z"/></svg>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold text-slate-400 group-hover:text-green-500">WhatsApp</span>
+                    </a>
                 </div>
             </div>
+
+            <div class="text-center md:text-right">
+                <p class="text-slate-500 text-xs uppercase tracking-widest mb-2 font-bold italic">Design & Development</p>
+                <h5 class="text-white font-bold text-lg mb-1">Tanmay Dalwadi</h5>
+                <a href="https://instagram.com/tanmay_dalwadi" target="_blank" class="text-yellow-500 text-xs hover:underline">@tanmay_dalwadi</a>
+            </div>
         </div>
-        <div class="footer-bottom" style="margin-top: 60px; text-align: center; border-top: 1px solid var(--gray); padding-top: 30px; font-size: 0.8rem; color: #444;">
-            &copy; 2024 TD Fitness Anand. Built for Champions.
+
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-[10px] uppercase tracking-widest">
+            <p>© 2026 StyleHub Men's Salon. All rights reserved.</p>
+            <p>Created by Tanmay Dalwadi</p>
         </div>
     </footer>
 
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/919106312477" target="_blank"
+       class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 active:scale-90 transition-all z-[999]">
+       <div class="flex items-center gap-2">
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412 0 6.556-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.197 1.441 4.934 1.442 5.333 0 9.673-4.34 9.673-9.673s-4.338-9.673-9.671-9.673c-5.333 0-9.673 4.34-9.673 9.673 0 2.1.671 4.108 1.942 5.84l-.997 3.646 3.73-.979zm9.423-6.117c-.366-.183-2.17-1.071-2.505-1.193-.335-.122-.579-.183-.823.183-.244.366-.945 1.193-1.159 1.438-.214.244-.427.274-.792.091-.366-.183-1.543-.568-2.939-1.814-1.086-.968-1.82-2.164-2.033-2.531-.214-.366-.023-.564.159-.745.163-.163.366-.427.549-.641.183-.214.244-.366.366-.61.122-.244.061-.457-.03-.641-.091-.183-.823-1.983-1.128-2.716-.297-.714-.598-.617-.823-.629-.214-.012-.457-.012-.701-.012s-.641.091-.976.457c-.335.366-1.281 1.251-1.281 3.05s1.312 3.538 1.495 3.782c.183.244 2.581 3.941 6.252 5.525.873.376 1.554.601 2.083.771.878.278 1.677.239 2.308.145.703-.105 2.17-.885 2.475-1.739.305-.854.305-1.586.214-1.739-.091-.153-.335-.244-.701-.427z"/></svg>
+           <span class="font-bold hidden sm:inline">Connect on WhatsApp</span>
+       </div>
+    </a>
+
     <script>
-        // --- Navbar Scroll Effect ---
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 80) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // --- Mobile Menu ---
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        // --- BMI Calculator Logic ---
-        function calculateBMI() {
-            let weightVal = parseFloat(document.getElementById('bmi-weight').value);
-            const weightUnit = document.getElementById('weight-unit').value;
-            let heightVal = parseFloat(document.getElementById('bmi-height').value);
-            const heightUnit = document.getElementById('height-unit').value;
-            const resultBox = document.getElementById('bmi-result');
-            
-            // Clear result if inputs are empty
-            if (isNaN(weightVal) || isNaN(heightVal) || weightVal <= 0 || heightVal <= 0) {
-                resultBox.classList.remove('active');
-                return;
-            }
-
-            // Standardize Weight to KG
-            // 1 lb = 0.45359237 kg
-            let weightInKg = weightVal;
-            if (weightUnit === 'lbs') {
-                weightInKg = weightVal * 0.45359237;
-            }
-
-            // Standardize Height to Meters
-            // 1 inch = 0.0254 m
-            let heightInMeters = heightVal;
-            if (heightUnit === 'cm') {
-                heightInMeters = heightVal / 100;
-            } else if (heightUnit === 'inch') {
-                heightInMeters = heightVal * 0.0254;
-            }
-
-            // BMI Calculation
-            const bmi = weightInKg / (heightInMeters * heightInMeters);
-            const bmiFixed = bmi.toFixed(1);
-            
-            document.getElementById('bmi-value').innerText = bmiFixed;
-            
-            let status = "";
-            let statusColor = "var(--primary)";
-            
-            if (bmi < 18.5) {
-                status = "Underweight - Time to bulk up!";
-                statusColor = "#3498db"; // Blue
-            } else if (bmi < 25) {
-                status = "Healthy Weight - Keep maintaining!";
-                statusColor = "#27ae60"; // Green
-            } else if (bmi < 30) {
-                status = "Overweight - Let's burn some fat!";
-                statusColor = "#f39c12"; // Orange
-            } else {
-                status = "Obese - Time for a serious transformation!";
-                statusColor = "#e74c3c"; // Red
-            }
-            
-            const statusEl = document.getElementById('bmi-status');
-            statusEl.innerText = status;
-            statusEl.style.color = statusColor;
-            
-            resultBox.classList.add('active');
-            resultBox.style.borderColor = statusColor;
-        }
-
-        // --- Legal Modal Logic ---
-        const legalData = {
-            privacy: { title: "Privacy Policy", content: "We respect your data. Your information is only used for internal membership management and fitness analysis." },
-            terms: { title: "Terms of Service", content: "By joining, you agree to follow gym safety rules and maintain proper etiquette toward staff and members." },
-            refund: { title: "Refund Policy", content: "Memberships are non-refundable but can be frozen for up to 30 days due to medical reasons." }
-        };
-
-        function showLegal(type) {
-            const modal = document.getElementById('legalModal');
-            const body = document.getElementById('modalBody');
-            const data = legalData[type];
-            body.innerHTML = `<h3>${data.title}</h3><p style="color: #ccc;">${data.content}</p>`;
-            modal.style.display = 'flex';
-        }
-
-        function closeLegal() { document.getElementById('legalModal').style.display = 'none'; }
-
-        // --- Lead Form Handling ---
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
+        function handleSubmit(e) {
             e.preventDefault();
-            this.style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-        });
-
-        // --- Newsletter Handling ---
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            this.style.display = 'none';
-            document.getElementById('news-sub-text').style.display = 'none';
-            document.getElementById('newsletterSuccess').style.display = 'block';
-        });
-
-        // --- Intersection Observer for Animations ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal, .slide-left, .slide-right').forEach(el => observer.observe(el));
+            const form = e.target;
+            const success = document.getElementById('success');
+            
+            // Visual feedback
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
+
